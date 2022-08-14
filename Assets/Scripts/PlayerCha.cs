@@ -16,23 +16,13 @@ public class PlayerCha : Character
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "BlueAgentia")
+        if (collision.CompareTag("BlueAgentia"))
         {
             bullets[0] = bulletTypes[0];
         }
-
-        //if (collision.tag == "Zombie")
-        //{
-        //    Hurt();
-        //}
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if (collision.collider.CompareTag("BlueAgentia"))
-        //{
-        //    bullets[0] = bulletTypes[0];
-        //}
-
         if (collision.collider.CompareTag("Enemy"))
         {
             Hurt();
@@ -42,7 +32,7 @@ public class PlayerCha : Character
     {
         hurt = true;
         ph--;
-        if (ph < 0)
+        if (ph <= 0)
         {
             ph = 0;
             die = true;
@@ -54,7 +44,6 @@ public class PlayerCha : Character
         animator.SetBool("Die", die);
         Invoke(nameof(Delay), 1f);
     }
-
     void Delay()
     {
         Time.timeScale = 0;//Í£Ö¹ÓÎÏ·

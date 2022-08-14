@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         isGround = false;
-        if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, 1<<12))
+        if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, 1<<6))
         {
             isGround = true;
             Debug.DrawLine(transform.position + new Vector3(0, 0.15f, 0), transform.position - new Vector3(0, 0.05f, 0), Color.red);

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2501160410179541445}
   - component: {fileID: 7687811936775508291}
   - component: {fileID: 5993944893044376126}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: BulletBoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

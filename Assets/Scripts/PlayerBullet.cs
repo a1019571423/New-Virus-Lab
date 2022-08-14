@@ -15,18 +15,15 @@ public class PlayerBullet : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
     }
-
     void Update()
     {
         Move();
         DelayDestroy();
     }
-
     void Move()
     {
         rigid.rotation -= 5f;
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(boom, transform.position, Quaternion.identity);

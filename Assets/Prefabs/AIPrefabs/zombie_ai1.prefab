@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5913949374458728389}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: crpoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3376109232761993567}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: plpoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4292874983384954401}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: prpoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7883831443457930660}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8636050437132921337}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: clpoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7933438539265810568}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: zombie_ai1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 9024615840538824322, guid: 3413c6727f591e94692738370a7ab22f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9053697542839056973, guid: 3413c6727f591e94692738370a7ab22f, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -440,3 +444,4 @@ MonoBehaviour:
     attackArea: 3.89
     animator: {fileID: 7862174297243268657}
     getHit: 0
+    Lock: 0

@@ -7,6 +7,7 @@ TagManager:
   - Platform
   - BlueAgentia
   - Enemy
+  - Zombie
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Platform
   - Prop
   - Player
   - PlayerBullet
