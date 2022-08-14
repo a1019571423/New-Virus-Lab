@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class IdleState : IState//每个状态实现IState接口
 {
-    private FSM manager;//类信息，用于状态转移等
-    private Parameter parameter;//AI信息
+    protected FSM manager;//类信息，用于状态转移等
+    protected Parameter parameter;//AI信息
 
-    private float timer;//计时器
+    protected float timer;//计时器
     public IdleState(FSM manager)//构造函数
     {
         this.manager = manager;
@@ -46,6 +46,49 @@ public class IdleState : IState//每个状态实现IState接口
     }
 
 }
+public class Idle1State : IState//每个状态实现IState接口
+{
+    protected FSM1 manager;//类信息，用于状态转移等
+    protected Parameter parameter;//AI信息
+
+    protected float timer;//计时器
+    public Idle1State(FSM1 manager)//构造函数
+    {
+        this.manager = manager;
+        this.parameter = manager.parameter;
+    }
+
+    public void OnEnter()
+    {
+        parameter.animator.Play("Idle1");
+    }
+
+    public void OnUpdate()
+    {
+        timer += Time.deltaTime;
+        if (parameter.getHit)
+        {
+            manager.TransitionState(StateType.Hit);
+        }
+        if (parameter.target != null &&
+            parameter.target.position.x >= parameter.chasePoints[0].position.x &&
+            parameter.target.position.x <= parameter.chasePoints[1].position.x)
+        {
+            manager.TransitionState(StateType.React);
+        }//反应动画，通过计时器来结束
+
+        if (timer >= parameter.idleTime)
+        {
+            manager.TransitionState(StateType.Patrol);//状态转移
+        }
+    }
+
+    public void OnExit()
+    {
+        timer = 0;
+    }
+
+}
 
 public class PatrolState : IState
 {
@@ -61,6 +104,55 @@ public class PatrolState : IState
     public void OnEnter()
     {
         parameter.animator.Play("Walk");
+    }
+
+    public void OnUpdate()
+    {
+        manager.FlipTo(parameter.patrolPoints[patrolPosition]);//朝向巡逻点
+
+        manager.transform.position = Vector2.MoveTowards(manager.transform.position,
+            parameter.patrolPoints[patrolPosition].position, parameter.moveSpeed * Time.deltaTime);
+
+        if (parameter.getHit)
+        {
+            manager.TransitionState(StateType.Hit);//被打状态切换
+        }
+        if (parameter.target != null &&//发现目标在范围内
+            parameter.target.position.x >= parameter.chasePoints[0].position.x &&
+            parameter.target.position.x <= parameter.chasePoints[1].position.x)
+        {
+            manager.TransitionState(StateType.React);
+        }
+        if (Vector2.Distance(manager.transform.position, parameter.patrolPoints[patrolPosition].position) < .1f)
+        {
+            manager.TransitionState(StateType.Idle);
+        }
+    }
+
+    public void OnExit()
+    {
+        patrolPosition++;//到某个点后切换
+
+        if (patrolPosition >= parameter.patrolPoints.Length)
+        {
+            patrolPosition = 0;
+        }
+    }
+}
+public class Patrol1State : IState
+{
+    private FSM manager;
+    private Parameter parameter;
+
+    private int patrolPosition;//巡逻点
+    public Patrol1State(FSM manager)
+    {
+        this.manager = manager;
+        this.parameter = manager.parameter;
+    }
+    public void OnEnter()
+    {
+        parameter.animator.Play("Idle1");
     }
 
     public void OnUpdate()
@@ -191,6 +283,44 @@ public class AttackState : IState
     public void OnEnter()
     {
         parameter.animator.Play("Attack");
+    }
+
+    public void OnUpdate()
+    {
+        info = parameter.animator.GetCurrentAnimatorStateInfo(0);
+
+        if (parameter.getHit)
+        {
+            manager.TransitionState(StateType.Hit);
+        }
+        if (info.normalizedTime >= .95f)
+        {
+            manager.TransitionState(StateType.Chase);
+        }
+    }
+
+    public void OnExit()
+    {
+
+    }
+}
+public class Attack1State : IState
+{
+    private FSM1 manager;
+    private Parameter parameter;
+
+    private AnimatorStateInfo info;
+    public Attack1State(FSM1 manager)
+    {
+        this.manager = manager;
+        this.parameter = manager.parameter;
+    }
+    public void OnEnter()
+    {
+        parameter.animator.Play("Attack1");
+        manager.delay();
+        
+        
     }
 
     public void OnUpdate()

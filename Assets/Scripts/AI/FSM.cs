@@ -11,6 +11,7 @@ public enum StateType
 [Serializable]
 public class Parameter
 {
+    public GameObject GasBottlePrefab;
     public int health;
     public float moveSpeed;//巡逻速度
     public float chaseSpeed;//追踪速度
@@ -23,13 +24,14 @@ public class Parameter
     public float attackArea;//攻击范围
     public Animator animator;
     public bool getHit;//判断是否受击
+    public bool Lock = false;
 }
 public class FSM : MonoBehaviour
 {
 
-    private IState currentState;//当前状态：Onenter, OnUpdate, OnExit
+    protected IState currentState;//当前状态：Onenter, OnUpdate, OnExit
 
-    private Dictionary<StateType, IState> states = new Dictionary<StateType, IState>();
+    protected Dictionary<StateType, IState> states = new Dictionary<StateType, IState>();
 
     public Parameter parameter;//在别的类方便获取ai的全部参数
     void Start()
@@ -80,23 +82,31 @@ public class FSM : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)//检查发现敌人范围
+    protected void OnTriggerStay2D(Collider2D other)//检查发现敌人范围
     {
         if (other.CompareTag("Player"))
         {
             parameter.target = other.transform;
         }
+        parameter.Lock = true;
     }
+    
 
-    private void OnTriggerExit2D(Collider2D other)//目标消失在范围内
+    protected void OnTriggerExit2D(Collider2D other)//目标消失在范围内
     {
+        parameter.Lock = false;
         if (other.CompareTag("Player"))
         {
-            parameter.target = null;
+            Invoke("delaylose", 1.5f);
         }
+        
     }
-
-    private void OnDrawGizmos()
+    void delaylose()
+    {
+        if(!parameter.Lock)
+        parameter.target = null;
+    }
+    protected void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(parameter.attackPoint.position, parameter.attackArea);
     }

@@ -1,6 +1,6 @@
-public interface IState
+public  interface IState
 {
-    void OnEnter();
+     void OnEnter();
 
     void OnUpdate();
 
