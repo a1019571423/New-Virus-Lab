@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 75897668471146817}
   - component: {fileID: 72720742509057161}
   - component: {fileID: 333552675}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Prop
   m_TagString: BlueAgentia
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 75723151246979887}
   - component: {fileID: 284700532446585227}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

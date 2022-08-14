@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCha : Character
 {
-    public List<Transform> bulletTypes;
+    public List<Rigidbody2D> bulletTypes;
     public float ph = 3;
     bool hurt;
     bool die;
@@ -14,14 +14,26 @@ public class PlayerCha : Character
         animator.SetBool("Hurt", hurt);
         hurt = false;
     }
-    private  void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "BlueAgentia")
         {
             bullets[0] = bulletTypes[0];
         }
 
-        if (collision.tag == "Zombie")
+        //if (collision.tag == "Zombie")
+        //{
+        //    Hurt();
+        //}
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if (collision.collider.CompareTag("BlueAgentia"))
+        //{
+        //    bullets[0] = bulletTypes[0];
+        //}
+
+        if (collision.collider.CompareTag("Enemy"))
         {
             Hurt();
         }
@@ -40,8 +52,7 @@ public class PlayerCha : Character
     void Die()
     {
         animator.SetBool("Die", die);
-        Invoke("Delay", 2);
-        //Destroy(gameObject, 0.5f);
+        Invoke(nameof(Delay), 1f);
     }
 
     void Delay()

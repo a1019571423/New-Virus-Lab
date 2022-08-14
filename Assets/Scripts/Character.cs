@@ -12,10 +12,10 @@ public class Character : MonoBehaviour
     Rigidbody2D rigd;
     public Animator animator;
 
-    public List<Transform> bullets;
+    public List<Rigidbody2D> bullets;
     public Transform bulletPoint;
 
-
+    public float bulletSpeed = 6.5f;
     void Start()
     {
         rigd = GetComponent<Rigidbody2D>();
@@ -55,14 +55,14 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         isGround = false;
-        if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, 1<<9))
+        if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, 1<<12))
         {
             isGround = true;
             Debug.DrawLine(transform.position + new Vector3(0, 0.15f, 0), transform.position - new Vector3(0, 0.05f, 0), Color.red);
         }
     }
 
-    public void HorAttack(bool attack)
+    public void Attack(bool attack)
     {
         if (attack)
         {
@@ -70,17 +70,8 @@ public class Character : MonoBehaviour
             {
                 return;
             }
-            Transform transform = Instantiate(bullets[0], bulletPoint.position, Quaternion.identity);
-        }
-
-        animator.SetBool("HorAttack", attack);
-
-    }
-    public void UpAttack(bool attack)
-    {
-        if (attack)
-        {
-            Debug.Log("¹¥»÷2");
+            Rigidbody2D bullet = Instantiate(bullets[0], bulletPoint.position, transform.rotation);
+            bullet.velocity = bulletPoint.right * bulletSpeed;
         }
 
         animator.SetBool("UpAttack", attack);

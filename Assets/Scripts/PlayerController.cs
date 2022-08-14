@@ -6,8 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     PlayerCha playerCha;
     bool jump;
-    bool horAttack;
-    bool upAttack;
+    bool attack;
 
     void Start()
     {
@@ -26,18 +25,12 @@ public class PlayerController : MonoBehaviour
         playerCha.Move(h, jump);
         jump = false;
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            horAttack = true;
-        }
         if (Input.GetButtonDown("Fire2"))
         {
-            upAttack = true;
+            attack = true;
         }
 
-        playerCha.HorAttack(horAttack);
-        horAttack = false;
-        playerCha.UpAttack(upAttack);
-        upAttack = false;
+        playerCha.Attack(attack);
+        attack = false;
     }
 }

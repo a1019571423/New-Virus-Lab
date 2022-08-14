@@ -24,27 +24,16 @@ public class PlayerBullet : MonoBehaviour
 
     void Move()
     {
-        vector = rigid.velocity;
-        if (player.transform.rotation.eulerAngles.y == 0)
-        {
-            vector.x += speed;
-        }
-        if (player.transform.rotation.eulerAngles.y == 180)
-        {
-            vector.x -= speed;
-        }
-        rigid.velocity = vector;
-
-        rigid.rotation += 5f;
+        rigid.rotation -= 5f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(boom, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
     void DelayDestroy()
     {
-        Destroy(gameObject, 0.6f);
+        Destroy(gameObject, 2f);
     }
 }
