@@ -22,7 +22,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - BackGround
-  - 
+  - OnewayPaltform
   - 
   - 
   - 
@@ -42,7 +42,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: BackGroud
+  - name: BackGround
     uniqueID: 898884255
     locked: 0
   - name: Default

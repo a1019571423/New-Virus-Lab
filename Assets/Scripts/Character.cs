@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     public float speed = 5;
     Vector2 vector;
-    bool isGround;
+    protected bool isGround;
     public float jumpspeed = 5;
 
     Rigidbody2D rigd;
@@ -16,6 +16,7 @@ public class Character : MonoBehaviour
     public Transform bulletPoint;
 
     public float bulletSpeed = 6.5f;
+
     void Start()
     {
         rigd = GetComponent<Rigidbody2D>();
@@ -54,13 +55,18 @@ public class Character : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGround = false;
-        if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, 1<<6))
+        if (gameObject.layer == 8)
         {
-            isGround = true;
-            Debug.DrawLine(transform.position + new Vector3(0, 0.15f, 0), transform.position - new Vector3(0, 0.05f, 0), Color.red);
+            isGround = false;
+            if (Physics2D.Raycast(transform.position + new Vector3(0, 0.15f, 0), Vector2.down, 0.2f, (1 << 6) | (1 << 13)))
+            {
+                isGround = true;
+                Debug.DrawLine(transform.position + new Vector3(0, 0.15f, 0), transform.position - new Vector3(0, 0.05f, 0), Color.red);
+            }
         }
     }
+
+    
 
     public void Attack(bool attack)
     {

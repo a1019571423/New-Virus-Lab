@@ -8,11 +8,14 @@ public class PlayerCha : Character
     public float ph = 3;
     bool hurt;
     bool die;
+    bool jumpDown;
+    public float downTime = 0.5f;
 
     private void Update()
     {
         animator.SetBool("Hurt", hurt);
         hurt = false;
+        JumpDown();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -26,6 +29,34 @@ public class PlayerCha : Character
         if (collision.collider.CompareTag("Enemy"))
         {
             Hurt();
+        }
+        if (collision.gameObject.layer == 13)
+        {
+            jumpDown = true;
+        }
+        else
+        {
+            jumpDown = false;
+        }
+    }
+    void JumpDown()
+    {
+        if (jumpDown && isGround)
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                gameObject.layer = 13;
+                isGround = false;
+                Invoke(nameof(ReCoverLayer), downTime);
+            }
+        }
+    }
+
+    void ReCoverLayer()
+    {
+        if (gameObject.layer == 13)
+        {
+            gameObject.layer = 8;
         }
     }
     void Hurt()
