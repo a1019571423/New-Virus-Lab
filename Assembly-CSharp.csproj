@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\AI\Parabola.cs" />
     <Compile Include="Assets\Scripts\AI\FSM.cs" />
     <Compile Include="Assets\Resources\CollegeStudent\Demo\DemoCollegeStudentController.cs" />
+    <Compile Include="Assets\Scripts\Start\ButtonEvent.cs" />
     <Compile Include="Assets\Scripts\Prop.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\AI\FSM1.cs" />
