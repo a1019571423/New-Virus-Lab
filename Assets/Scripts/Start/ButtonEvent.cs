@@ -8,10 +8,16 @@ public class ButtonEvent : MonoBehaviour
     public Transform cam;
     public AudioClip clickClip;
     public GameObject volumeFace;
+    public GameObject ThanksFace;
 
+    public float progressTime;
     private void Update()
     {
         ClickSound();
+        if (ThanksFace.activeInHierarchy)
+        {
+            ProgressBar();
+        }
     }
     public void Scenechange()
     {
@@ -57,5 +63,22 @@ public class ButtonEvent : MonoBehaviour
     public void EixtSlider()
     {
         volumeFace.SetActive(false);
+    }
+
+    public void DispalyThankFace()
+    {
+        ThanksFace.SetActive(true);
+    }
+    public void ProgressBar()
+    {
+        Transform slider = ThanksFace.transform.Find("Slider");
+        Transform numText = slider.transform.Find("NumText");
+        slider.GetComponent<Slider>().value += progressTime * Time.deltaTime;
+        float volume = slider.GetComponent<Slider>().value;
+        numText.GetComponent<Text>().text = ((int)(volume * 100f)).ToString() + "%";
+        if (volume >= 1f)
+        {
+            Scenechange();
+        }
     }
 }
