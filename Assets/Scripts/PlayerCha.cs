@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCha : Character
 {
     public List<Rigidbody2D> bulletTypes;
+    int btIndex = 0;
     public float ph = 3;
     bool hurt;
     bool die;
@@ -19,9 +20,39 @@ public class PlayerCha : Character
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("GreenAgentia"))
+        {
+            RecoverHp();
+        }
         if (collision.CompareTag("BlueAgentia"))
         {
-            bullets[0] = bulletTypes[0];
+            AddBullet(btIndex);
+        }
+        if (collision.CompareTag("YellowAgentia"))
+        {
+            btIndex = 1;
+            AddBullet(btIndex);
+        }
+        if (collision.CompareTag("PurpleAgentia"))
+        {
+            btIndex = 2;
+            AddBullet(btIndex);
+        }
+    }
+
+    void AddBullet(int index)
+    {
+        if (bullets[0] == null)
+        {
+            bullets[0] = bulletTypes[index];
+        }
+        else if (bullets[0] != bulletTypes[index] && bullets[1] == null)
+        {
+            bullets[1] = bulletTypes[index];
+        }
+        else if (bullets[0] != bulletTypes[index] && bullets[1] != bulletTypes[index] && bullets[2] == null)
+        {
+            bullets[2] = bulletTypes[index];
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,16 +78,25 @@ public class PlayerCha : Character
             {
                 gameObject.layer = 13;
                 isGround = false;
-                Invoke(nameof(ReCoverLayer), downTime);
+                Invoke(nameof(RecoverLayer), downTime);
             }
         }
     }
 
-    void ReCoverLayer()
+    void RecoverLayer()
     {
         if (gameObject.layer == 13)
         {
             gameObject.layer = 8;
+        }
+    }
+
+    void RecoverHp()
+    {
+        ph++;
+        if (ph >= 3)
+        {
+            ph = 3;
         }
     }
     void Hurt()

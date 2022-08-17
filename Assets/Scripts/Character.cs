@@ -68,15 +68,15 @@ public class Character : MonoBehaviour
 
     
 
-    public void Attack(bool attack)
+    public void Attack(bool attack,int index)
     {
         if (attack)
         {
-            if (bullets[0] == null)
+            if (bullets[index] == null)
             {
                 return;
             }
-            Rigidbody2D bullet = Instantiate(bullets[0], bulletPoint.position, transform.rotation);
+            Rigidbody2D bullet = Instantiate(bullets[index], bulletPoint.position, transform.rotation);
             bullet.velocity = bulletPoint.right * bulletSpeed;
         }
 

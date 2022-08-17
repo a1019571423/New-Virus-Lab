@@ -16,7 +16,7 @@ public class Elevator : MonoBehaviour
 
     void Start()
     {
-        state = State.up;
+        state = State.down;
     }
 
     void Update()
@@ -25,7 +25,7 @@ public class Elevator : MonoBehaviour
         {
             case State.up:
                 {
-                    transform.position += new Vector3(0, 0.7f, 0) * Time.deltaTime;
+                    transform.position += new Vector3(0, 1f, 0) * Time.deltaTime;
                     if (transform.position.y >= up.position.y)
                     {
                         state = State.down;
@@ -34,7 +34,7 @@ public class Elevator : MonoBehaviour
                 }
             case State.down:
                 {
-                    transform.position -= new Vector3(0, 0.7f, 0) * Time.deltaTime;
+                    transform.position -= new Vector3(0, 1f, 0) * Time.deltaTime;
                     if (transform.position.y <= down.position.y)
                     {
                         state = State.up;

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    Vector2 vector;
     Rigidbody2D rigid;
     GameObject player;
     public float speed = 7;

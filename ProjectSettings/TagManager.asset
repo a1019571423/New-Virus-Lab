@@ -8,6 +8,9 @@ TagManager:
   - BlueAgentia
   - Enemy
   - Zombie
+  - GreenAgentia
+  - YellowAgentia
+  - PurpleAgentia
   layers:
   - Default
   - TransparentFX
