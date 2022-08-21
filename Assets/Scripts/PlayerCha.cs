@@ -26,6 +26,7 @@ public class PlayerCha : Character
         }
         if (collision.CompareTag("BlueAgentia"))
         {
+            btIndex = 0;
             AddBullet(btIndex);
         }
         if (collision.CompareTag("YellowAgentia"))

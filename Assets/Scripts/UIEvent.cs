@@ -13,10 +13,14 @@ public class UIEvent : MonoBehaviour
     public GameObject volumeFace;
     public GameObject player;
     float hpVolue;
+    public GameObject hpFace;
     public GameObject hp1;
     public GameObject hp2;
     public GameObject hp3;
     public GameObject gameOver;
+    public GameObject ThanksFace;
+    public float progressTime;
+
     //public GameObject bluebt;
     //public GameObject yellowbt;
     //public GameObject purplebt;
@@ -27,6 +31,10 @@ public class UIEvent : MonoBehaviour
         if (hpVolue == 0)
         {
             DisGameOver();
+        }
+        if (ThanksFace.activeInHierarchy)
+        {
+            ProgressBar();
         }
     }
     public void QuitGame()
@@ -119,6 +127,20 @@ public class UIEvent : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void ProgressBar()
+    {
+        hpFace.SetActive(false);
+        Transform slider = ThanksFace.transform.Find("Slider");
+        Transform numText = slider.transform.Find("NumText");
+        slider.GetComponent<Slider>().value += progressTime * Time.deltaTime;
+        float volume = slider.GetComponent<Slider>().value;
+        numText.GetComponent<Text>().text = ((int)(volume * 100f)).ToString() + "%";
+        if (volume >= 1f)
+        {
+            SceneManager.LoadScene(2);
+            hpFace.SetActive(true);
+        }
+    }
     //public void btChange()
     //{
     //    Rigidbody2D rigid = player.GetComponent<PlayerCha>().bullets[0];

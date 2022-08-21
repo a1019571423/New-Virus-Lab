@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\BulletBoom.cs" />
     <Compile Include="Assets\Scripts\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\PlayerCha.cs" />
+    <Compile Include="Assets\Scripts\SenceChange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\2D\介绍.txt" />

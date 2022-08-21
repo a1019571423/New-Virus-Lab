@@ -221,7 +221,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -515,7 +515,9 @@ PrefabInstance:
     - target: {fileID: 7475735575026297347, guid: e07b7bd3382d245418bc5628b7d602c9, type: 3}
       propertyPath: m_Text
       value: "\u5236\u4F5C\u56E2\u961F\uFF1A   \u6211u\u95EA\n\u56E2\u961F\u6210\u5458\uFF1A  
-        Liux \u3001ugo \u3001\u95EA\u5149\u6167\u6167\n\n\u9E23\u8C22\uFF1A   \u7231\u7ED9\u7F51\u3001\u7D20\u6750\u5DF7\u3001Unity\u5546\u5E97\u7684\u7D20\u6750\u652F\u6301"
+        \n\t\tLiux\uFF08\u4E3B\u7A0B\uFF0CUI\u3001\u5173\u5361\u8BBE\u8BA1\u3001\u4E3B\u89D2\uFF09
+        \u3001\n\t\tugo\uFF08\u526F\u7A0B\uFF0CAl\u8BBE\u8BA1\uFF09 \u3001\n\t\t\u95EA\u5149\u6167\u6167\uFF08\u5267\u60C5\u6587\u6848\u3001\u7B56\u5212\uFF09\n\n\u9E23\u8C22\uFF1A  
+        \u7231\u7ED9\u7F51\u3001\u7D20\u6750\u5DF7\u3001Unity\u5546\u5E97\u7684\u7D20\u6750\u652F\u6301"
       objectReference: {fileID: 0}
     - target: {fileID: 7475735575636567097, guid: e07b7bd3382d245418bc5628b7d602c9, type: 3}
       propertyPath: m_AnchoredPosition.x
